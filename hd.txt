@@ -1,0 +1,22 @@
+1. sử dụng các thư viện express ejs socket
+
+key word:
+on : lắng nghe kết nối
+emit : phát tín hiệu
+connection : đại diện cho người connect
+
+socket : đại diện cho 1 doi tuong
+
+Cac buoc thu hien cua socket io
+
+1. A phải emit lên servers
+2 .servers phải on được data của A emit vào
+
+3 .
+Cach 1: server tra ve tat ca client (io.sockets.emit)
+
+Cach 2: server chi tra ve client gui data(socket.emit)
+
+Cach 3: server tra ve tat ca client tru client gui (socket.broadcast.emit)
+
+Cach 4: chi dinh tra ve (emit.to("socketid")).emit()
