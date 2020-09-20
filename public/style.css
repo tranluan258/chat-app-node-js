@@ -60,3 +60,7 @@
     text-align: right;
     border: 1px solid black;
 }
+
+.body-chat{
+    list-style-type: none;
+}

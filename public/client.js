@@ -30,7 +30,7 @@ socket.on("server-send-list-user", (data) => {
 //client receive message
 
 socket.on("server-send-message",(data)=>{
-    $(".box-chat").append("<div>"+data.un+":"+data.nd+"</div>");
+    $(".body-chat").append("<li>"+data.un+":"+data.nd+"</li>");
 });
 
 $(document).ready(() => {
