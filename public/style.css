@@ -56,3 +56,7 @@
     width: 80px;
 }
 
+.header-box{
+    text-align: right;
+    border: 1px solid black;
+}

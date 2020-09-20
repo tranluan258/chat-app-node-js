@@ -13,10 +13,10 @@ socket.on("sever-send-regis-fail", () => {
 });
 
 socket.on("server-send-regis-success", (data) => {
-    $("#name").html(data);
+    $("#name-user").html(data);
     setInterval(() => {
-        $(".container").hide();
-        $(".chat-box").show();
+        $(".container").hide(1000);
+        $(".chat-box").show(500);
     },1500);
 });
 
@@ -25,6 +25,12 @@ socket.on("server-send-list-user", (data) => {
     data.forEach((i) => {
         $(".user").append("<div class='user-online'>" + i + "</div>");
     });
+});
+
+//client receive message
+
+socket.on("server-send-message",(data)=>{
+    $(".box-chat").append("<div>"+data.un+":"+data.nd+"</div>");
 });
 
 $(document).ready(() => {
@@ -36,4 +42,15 @@ $(document).ready(() => {
             $("#user-name").val("");
         }
     });
+
+    $("#btn-send").click( () => {
+        if($("#message").val() === ""){
+
+        }
+        else{
+            socket.emit("client-send-message",$("#message").val());
+            $("#message").val("");
+        }
+    });
+
 });

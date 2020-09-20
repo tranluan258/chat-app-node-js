@@ -27,10 +27,17 @@ io.on("connection",(socket) => {
             socket.emit("sever-send-regis-fail");
         }
         else{
+            socket.name=data;
+            console.log(data);
             arrUser.push(data);//add user in arrUser
             socket.emit("server-send-regis-success",data);
             io.sockets.emit("server-send-list-user",arrUser);
         }
+    });
+
+    //receive message
+    socket.on("client-send-message",(data)=>{
+        io.sockets.emit("server-send-message",{un :socket.name, nd: data});
     });
 });
 
