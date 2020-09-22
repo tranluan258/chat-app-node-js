@@ -3,10 +3,6 @@ var socket = io("http://localhost:8080");
 
 
 //ready
-$(document).ready(() => {
-    $(".login-box").hide();
-    $(".chat-box").show();
-});
 //client nghe data tu server gui ve
 socket.on("sever-send-regis-fail", () => {
     alert("Have user regis!");
@@ -14,10 +10,8 @@ socket.on("sever-send-regis-fail", () => {
 
 socket.on("server-send-regis-success", (data) => {
     $("#name-user").html(data);
-    setInterval(() => {
-        $(".login-box").hide(1000);
-        $(".chat-box").show(500);
-    },1500);
+    $(".login-box").hide(500);
+    $(".chat-box").show(1000);
 });
 
 socket.on("server-send-list-user", (data) => {
@@ -29,11 +23,15 @@ socket.on("server-send-list-user", (data) => {
 
 //client receive message
 
-socket.on("server-send-message",(data)=>{
-    $(".body-chat").append("<li>"+data.un+":"+data.nd+"</li>");
+socket.on("server-send-message", (data) => {
+    $(".body-chat").append("<li>" + data.un + ":" + data.nd + "</li>");
 });
 
 $(document).ready(() => {
+
+    $(".login-box").show();
+    $(".chat-box").hide();
+
     $("#btn-registation").click(() => {
         if ($("#user-name").val() == "") {
             alert("Please enter user name");
@@ -43,14 +41,22 @@ $(document).ready(() => {
         }
     });
 
-    $("#btn-send").click( () => {
-        if($("#message").val() === ""){
+    $("#btn-send").click(() => {
+        if ($("#message").val() === "") {
 
         }
-        else{
-            socket.emit("client-send-message",$("#message").val());
+        else {
+            socket.emit("client-send-message", $("#message").val());
             $("#message").val("");
         }
     });
 
+    $("#btn-logout").click(() => {
+        socket.emit("client-logout");
+        $(".login-box").show(1000);
+        $(".chat-box").hide(500);
+    });
+
 });
+
+

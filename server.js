@@ -19,6 +19,12 @@ io.on("connection",(socket) => {
     //check disconnect
     socket.on("disconnect", () => {
         console.log("disconnected :" +socket.id);
+        if(socket.name != undefined){
+            arrUser.splice(
+                arrUser.indexOf(socket.name),1
+            )
+            socket.broadcast.emit("server-send-list-user",arrUser);
+        }
     });
     //server on data cua client
     socket.on("Client-send-username",(data) =>{
@@ -38,6 +44,14 @@ io.on("connection",(socket) => {
     //receive message
     socket.on("client-send-message",(data)=>{
         io.sockets.emit("server-send-message",{un :socket.name, nd: data});
+    });
+
+    //logout
+    socket.on("client-logout",()=>{
+        arrUser.splice(
+            arrUser.indexOf(socket.name),1
+        )
+        socket.broadcast.emit("server-send-list-user",arrUser);
     });
 });
 
