@@ -4,8 +4,8 @@ var socket = io("http://localhost:8080");
 
 //ready
 $(document).ready(() => {
-    $(".container").show();
-    $(".chat-box").hide();
+    $(".login-box").hide();
+    $(".chat-box").show();
 });
 //client nghe data tu server gui ve
 socket.on("sever-send-regis-fail", () => {
@@ -15,7 +15,7 @@ socket.on("sever-send-regis-fail", () => {
 socket.on("server-send-regis-success", (data) => {
     $("#name-user").html(data);
     setInterval(() => {
-        $(".container").hide(1000);
+        $(".login-box").hide(1000);
         $(".chat-box").show(500);
     },1500);
 });
@@ -38,7 +38,7 @@ $(document).ready(() => {
         if ($("#user-name").val() == "") {
             alert("Please enter user name");
         } else {
-            socket.emit("Client-send-username", $("#user-name").val()); //khách hàng emit lên server chữ hello với name là Client-send-data
+            socket.emit("Client-send-username", $("#user-name").val()); //khách hàng emit name lên server  với name là Client-send-data
             $("#user-name").val("");
         }
     });

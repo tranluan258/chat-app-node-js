@@ -16,39 +16,51 @@
 </head>
 
 <body>
-    <div class="container">
-        <form class="form-inline">
-          <label for="user-name">Name:</label>
-          <input type="text" class="form-control" id="user-name" placeholder="Enter your name" name="user-name">
-          <button type="button" class="btn btn-primary" id="btn-registation">Register</button>
-        </form>
+    <div class="login-box">
+        <h1>LOGIN</h1>
+        <from class="form">
+            <input type="text" id="user-name" placeholder="Enter your name" name="user-name">
+            <br>
+            <button type="button" id="btn-registation">Login</button>
+            </form>
     </div>
 
+
+    <div class="title">
+        <h1>Welcome</h1>
+    </div>
+
+
     <div class="chat-box">
-        <div class="box-user">
-            <div class="title">
-                User online
-            </div>
-            <div class="user">
-                <div class="user-online">
-    
-            </div>
-        </div>
-        </div>
+        <div class="container">
+            <div class="row">
+                <div class="box-user col-md-2 col-xs-12">
+                    <div class="title-box-user">
+                        User online
+                    </div>
+                    <div class="user">
+                        <div class="user-online">
 
-        <div class="box-chat">
-            <div class="header-box">
-                Hello: <span id="name-user"> </span>
-                <button type="button" class="btn btn-danger" id="btn-logout">Logout</button>
-            </div>
+                        </div>
+                    </div>
+                </div>
 
-            <ul class="body-chat">
+                <div class="box-chat col-md-7 col-xs-12">
+                    <div class="header-box">
+                        Hello: <span id="name-user"> </span>
+                        <button type="button" id="btn-logout">Logout</button>
+                    </div>
 
-            </ul>
-            
-            <div class="type-message">
-                <input type="text"id="message" placeholder="Enter message" name="message">
-                <button type="button" class="btn btn-primary" id="btn-send">Send</button>
+                    <ul class="body-chat">
+
+                    </ul>
+
+                    <div class="type-message">
+                        <input type="text" id="message" placeholder="Enter message" name="message">
+                        <button type="button" id="btn-send">Send</button>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
