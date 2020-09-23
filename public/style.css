@@ -4,6 +4,12 @@
 
 body{
     background-image: url(bg.png);
+    display: grid;
+    place-items: center;
+}
+
+html{
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .login-box{
@@ -28,7 +34,12 @@ body{
     background: none;
     border: none;
     outline: none;
+    text-align: center;
     border-bottom: 1px solid #0000ff;
+}
+
+#user-name:focus{
+    outline: none;
 }
 
 #btn-registation{
@@ -45,6 +56,7 @@ body{
     border: 1px solid black;
     text-align: center;
     font-weight: bold;
+    margin-left: 100px;
 }
 
 .title{
@@ -55,6 +67,7 @@ body{
 .title-box-user{
     border-bottom: 1px solid black;
     border-radius: 0 0 3px 3px;
+    font-weight: bold;
 }
 
 .chat-box {
@@ -80,6 +93,12 @@ body{
     width: 87%;
     height: 30px;
     border-radius: 3px;
+    background:#FFFFFF;
+    border: none;
+}
+
+.type-message input:focus{
+    outline:none;
 }
 
 .type-message button{
@@ -100,5 +119,21 @@ body{
 }
 
 .body-chat{
-    list-style-type: none;
+    display: grid;
+    grid-template-columns: 70%;
+    justify-content: start;
+    justify-items: start;
+}
+
+.data-chat{
+    border-radius: 0px 10px 0px 10px;
+    border: 1px solid blue;
+    margin-top: 5px;
+    background: #eee;
+    color: #111;
+}
+
+#name-user{
+    font-weight: bold;
+    color: blue;
 }

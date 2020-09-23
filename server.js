@@ -34,7 +34,6 @@ io.on("connection",(socket) => {
         }
         else{
             socket.name=data;
-            console.log(data);
             arrUser.push(data);//add user in arrUser
             socket.emit("server-send-regis-success",data);
             io.sockets.emit("server-send-list-user",arrUser);
