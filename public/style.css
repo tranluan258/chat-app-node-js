@@ -50,6 +50,11 @@ html{
     padding: 5px;
 }
 
+.alert-danger {
+    transition-delay: 0,2s;
+    margin-top: 10px;
+}
+
 .box-user{
     height: 200px;
     width: 200px;
