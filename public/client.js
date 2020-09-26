@@ -5,10 +5,11 @@ var socket = io("http://localhost:8080");
 //ready
 //client nghe data tu server gui ve
 socket.on("sever-send-regis-fail", () => {
-    $(".login-box").append("<div class='alert alert-danger'>Have user regis!</div>");
+    $(".alert-danger").html("Name already exists!");
+    $(".alert-danger").fadeIn(1000);
     setTimeout(() => {
-        $(".alert-danger").remove();
-    },1000);
+        $(".alert-danger").fadeOut();
+    },2000);
 });
 
 socket.on("server-send-regis-success", (data) => {
@@ -26,21 +27,27 @@ socket.on("server-send-list-user", (data) => {
 
 //client receive message
 
-socket.on("server-send-message", (data) => {
-    $(".body-chat").append("<div class='data-chat'>" + data.un + ":" + data.nd + "</div>");
+socket.on("server-send-message-you", (data) => {
+    $(".body-chat").append("<div class='body-chat-you'><span class='data-chat-you'>" + data.un + ":" + data.nd + "</span></div>");
+});
+
+socket.on("server-send-message-friend", (data) => {
+    $(".body-chat").append("<div class='body-chat-friend'><span class='data-chat-friend'>" + data.un + ":" + data.nd + "</span></div>");
 });
 
 $(document).ready(() => {
 
     $(".login-box").show();
     $(".chat-box").hide();
+    $(".alert-danger").hide();
 
     $("#btn-registation").click(() => {
         if ($("#user-name").val() == "") {
-            $(".login-box").append("<div class='alert alert-danger'>Please enter username!</div>");
+            $(".alert-danger").html("Please enter your name!");
+            $(".alert-danger").fadeIn(1000);
             setTimeout(() => {
-                $(".alert-danger").remove();
-            },1000);
+                $(".alert-danger").fadeOut();
+            },2000);
         } else {
             socket.emit("Client-send-username", $("#user-name").val()); //khách hàng emit name lên server  với name là Client-send-data
             $("#user-name").val("");

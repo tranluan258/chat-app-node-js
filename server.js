@@ -42,7 +42,8 @@ io.on("connection",(socket) => {
 
     //receive message
     socket.on("client-send-message",(data)=>{
-        io.sockets.emit("server-send-message",{un :socket.name, nd: data});
+        socket.emit("server-send-message-you",{un :socket.name, nd: data});
+        socket.broadcast.emit("server-send-message-friend",{un :socket.name, nd: data});
     });
 
     //logout
