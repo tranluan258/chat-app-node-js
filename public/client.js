@@ -1,15 +1,13 @@
 //call server
-var socket = io("http://localhost:8080");
+const socket = io("http://localhost:8080");
 
-
-//ready
 //client nghe data tu server gui ve
 socket.on("sever-send-regis-fail", () => {
     $(".alert-danger").html("Name already exists!");
     $(".alert-danger").fadeIn(1000);
     setTimeout(() => {
         $(".alert-danger").fadeOut();
-    },2000);
+    }, 2000);
 });
 
 socket.on("server-send-regis-success", (data) => {
@@ -47,7 +45,7 @@ $(document).ready(() => {
             $(".alert-danger").fadeIn(1000);
             setTimeout(() => {
                 $(".alert-danger").fadeOut();
-            },2000);
+            }, 2000);
         } else {
             socket.emit("Client-send-username", $("#user-name").val()); //khách hàng emit name lên server  với name là Client-send-data
             $("#user-name").val("");
