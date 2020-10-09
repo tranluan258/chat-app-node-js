@@ -21,10 +21,11 @@ html{
 }
 
 .login-box h1{
-    font-size: 35px;
+    font-weight: bold;
+    font-size: 70px;
     margin-bottom: 30px;
     text-align: center;
-    border-bottom: 1px solid #0000ff;
+    font-family: "Comic Sans MS", cursive, sans-serif;
 }
 
 .form{
@@ -32,11 +33,15 @@ html{
 }
 
 #user-name{
-    background: none;
-    border: none;
-    outline: none;
+    width: 100%;
     text-align: center;
-    border-bottom: 1px solid #0000ff;
+    padding: 18px 22px;
+    margin: 8px 0;
+    display: inline-block;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-size: 18px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 #user-name:focus{
@@ -44,16 +49,27 @@ html{
 }
 
 #btn-registation{
-    margin-top: 10px;
-    width: 100%;
-    background: none;
-    border: 1px solid #0000ff;
-    padding: 5px;
+    background-color: #f7b843; 
+    width: 50%;
+    color: black; 
+    padding: 20px 30px;
+    border: 2px solid black;
+    border-radius: 8px;
+    font-size: 20px;
+    margin: 2px 80px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+#btn-registation:hover{
+    background-color: pink;
+    color: white;
 }
 
 .alert-danger {
     transition-delay: 0,5s;
     margin-top: 10px;
+    text-align: center;
 }
 
 .box-user{
@@ -68,6 +84,7 @@ html{
 .title{
     text-align: center;
     padding-bottom: 50px;
+    color: #f7b843;
 }
 
 .title-box-user{
@@ -172,10 +189,10 @@ html{
 }
 
 .data-chat-you{
-    border-radius: 0px 10px 0px 10px;
+    border-radius: 10px;
     border: 1px solid blue;
-    background: #eee;
-    color: #111;
+    background: #3a539b;
+    color: white;
     height: 30px;
 }
 
@@ -189,9 +206,9 @@ html{
 }
 
 .data-chat-friend{
-    border-radius: 0px 10px 0px 10px;
+    border-radius: 10px;
     border: 1px solid blue;
-    background: #f64747;
+    background: #eee;
     color: #111;
     height: 30px;
 }
