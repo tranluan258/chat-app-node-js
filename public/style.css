@@ -72,13 +72,17 @@ html{
     text-align: center;
 }
 
+.row{
+    display: flex;
+    flex-direction: row;
+}
+
 .box-user{
-    height: 200px;
+    height: 100%;
     width: 200px;
     border: 1px solid black;
     text-align: center;
     font-weight: bold;
-    margin-left: 100px;
 }
 
 .title{
@@ -102,7 +106,6 @@ html{
     border: 3px solid gray;
     height: 70vh;
     width: 1000px;
-    margin-left: 100px;
 }
 
 .type-message{

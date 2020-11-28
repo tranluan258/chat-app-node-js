@@ -47,8 +47,6 @@ io.on("connection", socket => {
     })
 })
 
-
-
 app.get("/", (req, res) => {
     res.render("homepage")
 })
