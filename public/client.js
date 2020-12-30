@@ -1,4 +1,4 @@
-const socket = io("http://localhost:8080")
+const socket = io("https://massager-demo.herokuapp.com")
 
 socket.on("sever-send-regis-fail", () => {
     $(".alert-danger").html("Name already exists!")
