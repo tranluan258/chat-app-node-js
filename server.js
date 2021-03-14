@@ -1,3 +1,4 @@
+require('dotenv').config
 const express = require("express")
 const app = express();
 app.use(express.static("./public"))
@@ -6,26 +7,25 @@ app.set("views", "./views")
 
 const server = require("http").Server(app)
 const io = require("socket.io")(server)
-const PORT = process.env.PORT || 8080;
+const PORT = 8080;
 server.listen(PORT)
 
-let arrUser = new Map()
+let arrUser = []
 
 io.on("connection", socket => {
     socket.on("disconnect", () => {
         if (socket.name != undefined) {
-            arrUser.delete(socket.name)
+            arrUser.splice(arrUser.indexOf(socket.name), 1)
             socket.broadcast.emit("server-send-list-user", arrUser)
         }
     })
-
     socket.on("Client-send-username", data => {
-        if (arrUser.get(data.username) >= 0) {
+        if (arrUser.indexOf(socket.name) >= 0) {
             socket.emit("sever-send-regis-fail")
         }
         else {
             socket.name = data
-            arrUser.set(data,data)
+            arrUser.push(data)
             socket.emit("server-send-regis-success", data)
             io.sockets.emit("server-send-list-user", arrUser)
         }
@@ -37,7 +37,7 @@ io.on("connection", socket => {
     })
 
     socket.on("client-logout", () => {
-        arrUser.delete(socket.name)
+        arrUser.splice(arrUser.indexOf(socket.name), 1)
         socket.broadcast.emit("server-send-list-user", arrUser)
     })
 })
