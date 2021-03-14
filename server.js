@@ -9,26 +9,23 @@ const io = require("socket.io")(server)
 const PORT = process.env.PORT || 8080;
 server.listen(PORT)
 
-let arrUser = []
+let arrUser = new Map()
 
 io.on("connection", socket => {
     socket.on("disconnect", () => {
-        console.log("disconnected :" + socket.id);
         if (socket.name != undefined) {
-            arrUser.splice(
-                arrUser.indexOf(socket.name), 1
-            )
+            arrUser.delete(socket.name)
             socket.broadcast.emit("server-send-list-user", arrUser)
         }
     })
 
     socket.on("Client-send-username", data => {
-        if (arrUser.indexOf(data) >= 0) {
+        if (arrUser.get(data.username) >= 0) {
             socket.emit("sever-send-regis-fail")
         }
         else {
             socket.name = data
-            arrUser.push(data)
+            arrUser.set(data,data)
             socket.emit("server-send-regis-success", data)
             io.sockets.emit("server-send-list-user", arrUser)
         }
@@ -40,9 +37,7 @@ io.on("connection", socket => {
     })
 
     socket.on("client-logout", () => {
-        arrUser.splice(
-            arrUser.indexOf(socket.name), 1
-        )
+        arrUser.delete(socket.name)
         socket.broadcast.emit("server-send-list-user", arrUser)
     })
 })
