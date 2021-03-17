@@ -1,7 +1,15 @@
-const socket = io("https://massager-demo.herokuapp.com/")
+const socket = io("http://localhost:8080/")
 
 socket.on("sever-send-regis-fail", () => {
     $(".alert-danger").html("Name already exists!")
+    $(".alert-danger").fadeIn(1000)
+    setTimeout(() => {
+        $(".alert-danger").fadeOut()
+    }, 2000)
+})
+
+socket.on("server-send-user-disconnect", data => {
+    $(".alert-danger").html(`${data} disconnect`)
     $(".alert-danger").fadeIn(1000)
     setTimeout(() => {
         $(".alert-danger").fadeOut()
@@ -12,6 +20,14 @@ socket.on("server-send-regis-success", data => {
     $("#name-user").html(data)
     $(".login-box").hide(500)
     $(".chat-box").show(1000)
+})
+
+socket.on("server-send-new-client", data => {
+    $(".alert-success").html(`${data} online`)
+    $(".alert-success").fadeIn(1000)
+    setTimeout(() => {
+        $(".alert-success").fadeOut()
+    }, 2000)
 })
 
 socket.on("server-send-list-user", data => {
@@ -34,6 +50,7 @@ $(document).ready(() => {
     $(".login-box").show()
     $(".chat-box").hide()
     $(".alert-danger").hide()
+    $(".alert-success").hide()
 
     $("#btn-registation").click(() => {
         if ($("#user-name").val() == "") {

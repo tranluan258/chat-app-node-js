@@ -7,7 +7,7 @@ app.set("views", "./views")
 
 const server = require("http").Server(app)
 const io = require("socket.io")(server)
-const PORT = process.env.PORT || 8080;
+const PORT =  8080;
 server.listen(PORT)
 
 let arrUser = []
@@ -20,13 +20,14 @@ io.on("connection", socket => {
         }
     })
     socket.on("Client-send-username", data => {
-        if (arrUser.indexOf(socket.name) >= 0) {
+        if (arrUser.indexOf(data) >= 0) {
             socket.emit("sever-send-regis-fail")
         }
         else {
             socket.name = data
             arrUser.push(data)
             socket.emit("server-send-regis-success", data)
+            socket.broadcast.emit("server-send-new-client", data)
             io.sockets.emit("server-send-list-user", arrUser)
         }
     })
